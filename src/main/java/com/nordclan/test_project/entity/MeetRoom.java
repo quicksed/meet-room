@@ -17,6 +17,4 @@ public class MeetRoom {
 
     @OneToMany(mappedBy = "meetRoom")
     private Set<Booking> bookings;
-
-    public MeetRoom() {}
 }

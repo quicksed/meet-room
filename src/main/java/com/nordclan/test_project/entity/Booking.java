@@ -35,15 +35,4 @@ public class Booking {
             joinColumns = {@JoinColumn(name = "booking_id")},
             inverseJoinColumns = {@JoinColumn(name = "employee_id")})
     private Set<Employee> employees;
-
-    public Booking() {}
-
-    public Booking(String name, String description, LocalDateTime timeFrom, LocalDateTime timeTo, Employee owner, MeetRoom meetRoom) {
-        this.name = name;
-        this.description = description;
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
-        this.owner = owner;
-        this.meetRoom = meetRoom;
-    }
 }
