@@ -12,11 +12,13 @@ import java.util.Set;
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Long> {
 
-    Set<Booking> findByTimeFromAndTimeTo(LocalDateTime timeFrom, LocalDateTime timeTo);
+    @Query(value = "SELECT * FROM booking b " +
+            "WHERE b.meet_room_id = ?1 AND b.time_from >= ?2 AND b.time_to <= ?3", nativeQuery = true)
+    Set<Booking> findBookingsByPeriodAndMeetRoom(Long meetRoomId, LocalDateTime timeFrom, LocalDateTime timeTo);
 
     @Modifying
-    @Query("INSERT INTO booking_employee(booking_id, employee_id) " +
+    @Query(value = "INSERT INTO booking_employee(booking_id, employee_id) " +
             "VALUES (?1, ?2) " +
-            "WHERE booking_id = ?1")
-    Booking joinEmployeeToBooking(Long bookingId, Long employeeId);
+            "WHERE booking_id = ?1", nativeQuery = true)
+    void joinEmployeeToBooking(Long bookingId, Long employeeId);
 }

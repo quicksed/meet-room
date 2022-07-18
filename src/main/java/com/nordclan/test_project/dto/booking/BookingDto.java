@@ -18,4 +18,6 @@ public class BookingDto {
     LocalDateTime timeFrom;
 
     LocalDateTime timeTo;
+
+    Long meetRoomId;
 }

@@ -1,0 +1,24 @@
+server:
+    error:
+        path: '/error'
+        whitelabel:
+            enabled: false
+
+spring:
+    application:
+        name: 'MeetRoom'
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/meet_room
+        driver-class-name: org.postgresql.Driver
+        username: postgres
+        password: postgres
+
+        jpa:
+            show-sql: true
+            hibernate:
+                ddl-auto: validate
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+
+        flyway:
+            enabled: true

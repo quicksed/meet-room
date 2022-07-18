@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 @Setter
 public class BookingUpdateDto {
 
+    Long id;
+
     String name;
 
     String description;

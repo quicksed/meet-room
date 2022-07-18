@@ -14,7 +14,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 
     @Query(value = "SELECT * FROM employee " +
             "JOIN employee_booking on employee.id = employee_id " +
-            "WHERE booking_id = ?1",
-            nativeQuery = true)
+            "WHERE booking_id = ?1", nativeQuery = true)
     Set<Employee> findEmployeesByBookingId(Long bookingId);
 }

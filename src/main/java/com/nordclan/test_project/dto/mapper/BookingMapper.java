@@ -31,7 +31,7 @@ public class BookingMapper {
                 .collect(Collectors.toSet());
     }
 
-    public Booking toEntity(BookingCreateDto model, Employee owner, MeetRoom meetRoom) {
+    public Booking createDtoToEntity(BookingCreateDto model, Employee owner, MeetRoom meetRoom) {
         Booking booking = new Booking();
         booking.setName(model.getName());
         booking.setDescription(model.getDescription());
@@ -43,7 +43,7 @@ public class BookingMapper {
         return booking;
     }
 
-    public Booking toEntity(BookingUpdateDto model) {
+    public Booking updateDtoToEntity(BookingUpdateDto model) {
         Booking booking = new Booking();
         booking.setName(model.getName());
         booking.setDescription(model.getDescription());
