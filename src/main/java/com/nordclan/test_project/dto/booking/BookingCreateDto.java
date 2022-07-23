@@ -17,6 +17,10 @@ public class BookingCreateDto {
 
     LocalDateTime timeTo;
 
+    String stringTimeFrom;
+
+    String stringTimeTo;
+
     Long meetRoomId;
 
     Long ownerId;

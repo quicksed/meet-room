@@ -1,9 +1,11 @@
 package com.nordclan.test_project.dto.mapper;
 
-import com.nordclan.test_project.dto.meet_room.MeetRoomBookedPeriodsDto;
 import com.nordclan.test_project.dto.meet_room.MeetRoomDto;
 import com.nordclan.test_project.entity.MeetRoom;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MeetRoomMapper {
@@ -16,11 +18,9 @@ public class MeetRoomMapper {
         return meetRoomDto;
     }
 
-    public MeetRoomBookedPeriodsDto toBookedPeriodsDto(MeetRoom model) {
-        MeetRoomBookedPeriodsDto meetRoomBookedPeriodsDto = new MeetRoomBookedPeriodsDto();
-        meetRoomBookedPeriodsDto.setId(model.getId());
-        meetRoomBookedPeriodsDto.setName(model.getName());
-
-        return meetRoomBookedPeriodsDto;
+    public List<MeetRoomDto> toDto(List<MeetRoom> model) {
+        return model.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 }

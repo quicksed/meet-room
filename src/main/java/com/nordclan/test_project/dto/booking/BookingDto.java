@@ -20,4 +20,6 @@ public class BookingDto {
     LocalDateTime timeTo;
 
     Long meetRoomId;
+
+    boolean isJoined;
 }

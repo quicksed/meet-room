@@ -10,4 +10,10 @@ public class MeetRoomDto {
     Long id;
 
     String name;
+
+    public MeetRoomDto() {}
+
+    public MeetRoomDto(String name) {
+        this.name = name;
+    }
 }

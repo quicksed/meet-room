@@ -8,27 +8,28 @@ import com.nordclan.test_project.entity.Employee;
 import com.nordclan.test_project.entity.MeetRoom;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class BookingMapper {
 
-    public BookingDto toDto(Booking model) {
+    public BookingDto toDto(Booking model, Employee employee) {
         BookingDto booking = new BookingDto();
         booking.setId(model.getId());
         booking.setName(model.getName());
         booking.setDescription(model.getDescription());
         booking.setTimeFrom(model.getTimeFrom());
         booking.setTimeTo(model.getTimeTo());
+        booking.setJoined( model.getEmployees().contains(employee));
 
         return booking;
     }
 
-    public Set<BookingDto> toDto(Set<Booking> model) {
+    public List<BookingDto> toDto(List<Booking> model, Employee employee) {
         return model.stream()
-                .map(this::toDto)
-                .collect(Collectors.toSet());
+                .map(booking -> toDto(booking, employee))
+                .collect(Collectors.toList());
     }
 
     public Booking createDtoToEntity(BookingCreateDto model, Employee owner, MeetRoom meetRoom) {
