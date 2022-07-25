@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Setter
 public class BookingUpdateDto {
 
-    @NotNull(message ="Поле должно быть заполнено")
+    @NotNull(message = "Поле должно быть заполнено")
     Long id;
 
-    @NotEmpty(message ="Поле должно быть заполнено")
+    @NotEmpty(message = "Поле должно быть заполнено")
     String name;
 
-    @NotEmpty(message ="Поле должно быть заполнено")
+    @NotEmpty(message = "Поле должно быть заполнено")
     String description;
 }

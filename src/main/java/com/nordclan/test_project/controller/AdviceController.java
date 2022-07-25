@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class AdviceController extends ResponseEntityExceptionHandler{
+public class AdviceController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public String handleResourceNotFoundException(HttpServletRequest request, Exception exception, Model model) {
