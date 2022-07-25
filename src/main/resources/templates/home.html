@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: headFragment">
+    <title id="pageTitle">График бронирования</title>
+</head>
+<body>
+    <div th:replace="fragments/nav-menu :: menuFragment"/>
+    <div class="container-xxl my-4">
+        <div class="row justify-content-md-center">
+            <div class="col-1 d-flex align-items-center justify-content-center">
+                <a th:href="@{/(date=${startOfWeek},direction='prev')}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="col-1">
+                <strong><div th:utext="${bookingsByDay[0].date}"></div></strong>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center">
+                &mdash;
+            </div>
+            <div class="col-1">
+                <strong><div th:utext="${bookingsByDay[#lists.size(bookingsByDay) - 1].date}"></div></strong>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-center">
+                <a th:href="@{/(date=${startOfWeek},direction='next')}" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="container-xxl my-4">
+                <div class="column-time">
+                    <div th:replace="fragments/time-column :: timeColumnFragment" />
+                </div>
+                <th:block th:each="day : ${bookingsByDay}">
+                    <div class="column">
+                        <strong><div class="cell d-flex align-items-center justify-content-center" th:utext="${day.date}"></div></strong>
+                        <th:block th:each="booking : ${day.bookings}">
+                            <div class="cell">
+                                <strong><a th:href="@{/booking/description(id=${booking.id})}" th:if="${booking.isOwner == false}" class="btn d-flex align-items-center justify-content-center" th:utext="${booking.name}"></a></strong>
+                                <strong><a th:href="@{/booking/update(id=${booking.id})}" th:if="${booking.isOwner == true}" class="btn d-flex align-items-center justify-content-center" th:utext="${booking.name}"></a></strong>
+                                <hr th:if="${booking.name} != null" size="5" />
+                                <th:block th:each="employee : ${booking.members}">
+                                    <div class="d-flex align-items-center justify-content-center" th:utext="${employee.username}"></div>
+                                </th:block>
+                                <hr th:if="${booking.name != null}" size="5" />
+                                <a th:href="@{/booking/join/(id=${booking.id})}" th:if="${booking.isJoined == false and booking.name != null}" class="btn">Присоединиться</a>
+                                <a th:href="@{/booking/exit/(id=${booking.id})}" th:if="${booking.isJoined == true and booking.isOwner == false and booking.name != null}" class="btn">Выйти</a>
+                                <a th:href="@{/booking/exit/(id=${booking.id})}" th:if="${booking.isOwner == true and booking.isOwner == false and booking.name != null}" class="btn">Удалить</a>
+                            </div>
+                        </th:block>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
