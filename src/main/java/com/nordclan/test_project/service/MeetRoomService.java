@@ -1,17 +1,13 @@
 package com.nordclan.test_project.service;
 
-import com.nordclan.test_project.dto.meet_room.BookedPeriod;
 import com.nordclan.test_project.dto.meet_room.MeetRoomDto;
-import com.nordclan.test_project.entity.MeetRoom;
+import com.nordclan.test_project.exception.ResourceNotFoundException;
 
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 public interface MeetRoomService {
 
-    boolean isBooked(MeetRoomDto meetRoomDto, LocalDateTime timeFrom, LocalDateTime timeTo);
+    MeetRoomDto findByName(String name) throws ResourceNotFoundException;
 
-    Set<MeetRoom> getAllMeetRooms();
-
-    Set<BookedPeriod> getBookedPeriodByMeetRoom(MeetRoomDto meetRoomDto);
+    List<MeetRoomDto> findAll();
 }

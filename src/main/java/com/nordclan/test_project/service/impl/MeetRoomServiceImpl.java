@@ -1,8 +1,7 @@
 package com.nordclan.test_project.service.impl;
 
-import com.nordclan.test_project.dto.meet_room.BookedPeriod;
+import com.nordclan.test_project.dto.mapper.MeetRoomMapper;
 import com.nordclan.test_project.dto.meet_room.MeetRoomDto;
-import com.nordclan.test_project.entity.Booking;
 import com.nordclan.test_project.entity.MeetRoom;
 import com.nordclan.test_project.exception.ResourceNotFoundException;
 import com.nordclan.test_project.repository.BookingRepo;
@@ -13,8 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Service
 @Transactional(isolation = Isolation.REPEATABLE_READ)
@@ -23,24 +21,18 @@ public class MeetRoomServiceImpl implements MeetRoomService {
 
     private final BookingRepo bookingRepo;
     private final MeetRoomRepo meetRoomRepo;
+    private final MeetRoomMapper meetRoomMapper;
 
     @Override
-    public boolean isBooked(MeetRoomDto meetRoomDto, LocalDateTime timeFrom, LocalDateTime timeTo) {
-        MeetRoom meetRoom = meetRoomRepo.findByName(meetRoomDto.getName())
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("Meet room with id '%s' not found", meetRoomDto.getId())));
+    public MeetRoomDto findByName(String name) throws ResourceNotFoundException {
+        MeetRoom meetRoom = meetRoomRepo.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Переговорная '%s' не найдена", name)));
 
-        Set<Booking> listOfBookings = bookingRepo.findBookingsByPeriodAndMeetRoom(meetRoom.getId(), timeFrom, timeTo);
-
-        return !listOfBookings.isEmpty();
+        return meetRoomMapper.toDto(meetRoom);
     }
 
     @Override
-    public Set<MeetRoom> getAllMeetRooms() {
-        return null;
-    }
-
-    @Override
-    public Set<BookedPeriod> getBookedPeriodByMeetRoom(MeetRoomDto meetRoomDto) {
-        return null;
+    public List<MeetRoomDto> findAll() {
+        return meetRoomMapper.toDto(meetRoomRepo.findAll());
     }
 }

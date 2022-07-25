@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
@@ -15,5 +15,5 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     @Query(value = "SELECT * FROM employee " +
             "JOIN employee_booking on employee.id = employee_id " +
             "WHERE booking_id = ?1", nativeQuery = true)
-    Set<Employee> findEmployeesByBookingId(Long bookingId);
+    List<Employee> findEmployeesByBookingId(Long bookingId);
 }
