@@ -8,6 +8,9 @@ spring:
     application:
         name: 'MeetRoom'
 
+    thymeleaf:
+        cache: false
+
     datasource:
         url: jdbc:postgresql://localhost:5432/meet_room
         driver-class-name: org.postgresql.Driver
