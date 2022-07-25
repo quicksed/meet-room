@@ -1,0 +1,51 @@
+.page {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar-color {
+    background-color: #515bd4;
+}
+
+.user-panel {
+    position: relative;
+}
+
+.appname {
+    transform: translateY(-10%);
+}
+
+.username {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* custom table classes */
+
+.cell {
+	height: 200px;
+	border: 1px solid gray;
+}
+
+.column-time {
+	width: 80px;
+	height: 200px;
+	text-align: center;
+	float: left;
+}
+
+.column {
+	width: 150px;
+	height: 200px;
+	text-align: center;
+	float: left;
+}
+
+.table {
+	height: 200px;
+	float: left;
+}
