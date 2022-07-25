@@ -13,8 +13,8 @@
 
 
 1. Clone repo in your PC
-2. Open project folder in terminal
-3. Type commands: ``mvn package`` и ``docker-compose up``
+2. Open project in any IDE
+3. Run application
 4. Go to ``localhost:8080`` in browser
 
 
