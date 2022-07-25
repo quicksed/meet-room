@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class BookingUpdateDto {
 
-    @NotEmpty(message ="Поле должно быть заполнено")
+    @NotNull(message ="Поле должно быть заполнено")
     Long id;
 
     @NotEmpty(message ="Поле должно быть заполнено")

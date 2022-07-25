@@ -24,7 +24,7 @@
                 <strong><div th:utext="${bookingsByDay[#lists.size(bookingsByDay) - 1].date}"></div></strong>
             </div>
             <div class="col-1 d-flex align-items-center justify-content-center">
-                <a th:href="@{/(date=${startOfWeek},direction='next')}" class="btn btn-secondary">
+                <a th:href="@{(date=${startOfWeek},direction='next')}" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
                     </svg>
@@ -46,9 +46,9 @@
                                     <div class="d-flex align-items-center justify-content-center" th:utext="${employee.username}"></div>
                                 </th:block>
                                 <hr th:if="${booking.name != null}" size="5" />
-                                <a th:href="@{/booking/join/(id=${booking.id})}" th:if="${booking.isJoined == false and booking.name != null}" class="btn">Присоединиться</a>
-                                <a th:href="@{/booking/exit/(id=${booking.id})}" th:if="${booking.isJoined == true and booking.isOwner == false and booking.name != null}" class="btn">Выйти</a>
-                                <a th:href="@{/booking/exit/(id=${booking.id})}" th:if="${booking.isOwner == true and booking.isOwner == false and booking.name != null}" class="btn">Удалить</a>
+                                <a th:href="@{/booking/join(id=${booking.id})}" th:if="${booking.isJoined == false and booking.name != null}" class="btn">Присоединиться</a>
+                                <a th:href="@{/booking/exit(id=${booking.id})}" th:if="${booking.isJoined == true and booking.isOwner == false and booking.name != null}" class="btn">Выйти</a>
+                                <a th:href="@{/booking/delete(id=${booking.id})}" th:if="${booking.isOwner == true and booking.name != null}" class="btn">Удалить</a>
                             </div>
                         </th:block>
                     </div>

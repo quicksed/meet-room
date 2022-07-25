@@ -14,7 +14,6 @@ public class BookingCreateDto {
     @NotEmpty(message ="Поле должно быть заполнено")
     String name;
 
-    @NotEmpty(message ="Поле должно быть заполнено")
     String description;
 
     LocalDateTime timeFrom;

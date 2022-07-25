@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class IncorrectBookingPeriodException extends RuntimeException {
 
     public IncorrectBookingPeriodException() {
-        super("Минимальный период бронирования - 30 минут");
+        super("Минимальный период бронирования - 30 минут, максимальный - 24 часа");
     }
 }
